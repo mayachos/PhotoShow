@@ -57,7 +57,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.image = info[.editedImage] as? UIImage
         
         dismiss(animated: true, completion: nil)
-        
+        save()
     }
     
     //保存するためのパスを作成する
@@ -89,7 +89,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
       }
      
       
-    @IBAction func save() {
+    func save() {
         saveImage()
         
         if imageView.image != nil {
