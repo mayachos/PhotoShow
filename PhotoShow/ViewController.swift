@@ -30,7 +30,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let filePath = imageName?.path
             imageView.image = UIImage(contentsOfFile: filePath!)
         } else {
-            print("読み込み")
             imageView.image = UIImage(named: "noimage.png")
         }
         
@@ -90,20 +89,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
       }
      
       
-      @IBAction func save() {
-          saveImage()
-
-          if imageView.image != nil {
+    @IBAction func save() {
+        saveImage()
+        
+        if imageView.image != nil {
             saveData.set(documentDirectoryFileURL, forKey: "PHOTO")
-          }
-          
-          let alert: UIAlertController = UIAlertController(title: "完了", message: "保存しました",preferredStyle: .alert)
-          
-          alert.addAction(UIAlertAction(title: "OK", style: .default,handler: nil))
-          
-          present(alert, animated: true, completion: nil)
-          
-      }
+        }
+        
+        let alert: UIAlertController = UIAlertController(title: "完了", message: "保存しました",preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default,handler: {(action) -> Void in
+            UIView.animate(withDuration: 1, delay: 0) {
+                self.imageView.center.y += 100
+            }
+        }))
+        
+        present(alert, animated: true, completion: nil)
+        
+
+        
+    }
     
     
 
